@@ -1,0 +1,40 @@
+{
+  "title": "n8n Relocation Plan",
+  "user": "n8n maintainers moving exported workflows between environments",
+  "problem": "Credential IDs and called-workflow IDs are environment-specific. Bulk replacement can bind a node to an ambiguous or incompatible target.",
+  "capability": "Create a typed reference-mapping plan, report ambiguous/dynamic references and apply a reviewed plan only when both the workflow and catalog still match.",
+  "anchor": "n8n-io/n8n",
+  "pin": "Export metadata shape reviewed at n8n commit9a489b65ed539a042e819012558cfc6985aab78d, interfaces.ts blob e31059c38296d46c7d0361378d61a0dc99644d5f; current release observed n8n@2.44.6. File-format tests only; live server imports are untested.",
+  "alternatives": [
+    "n8n-io/n8n",
+    "aleksnero/n8n-backup-manager",
+    "dataprospectors-at/n8n-porter"
+  ],
+  "query": "topic:workflow-automation stars:>10000 archived:false sort:stars; n8n migration sort:stars; n8n backup sort:stars",
+  "evidence": [
+    "https://docs.n8n.io/build/manage-workflows/export-and-import.md",
+    "https://github.com/n8n-io/n8n/issues/20049",
+    "https://github.com/n8n-io/n8n/blob/9a489b65ed539a042e819012558cfc6985aab78d/packages/workflow/src/interfaces.ts"
+  ],
+  "demand": "Issue20049 records historical credential-import pain and is closed. Existing n8n-porter already supports environment mapping. This tool targets a narrower offline reviewed-plan workflow; demand for it is inferred, not an upstream feature request.",
+  "addition": "n8n supplies export/import; n8n Backup Manager backs up/restores instances and snapshots; n8n-porter migrates resources with server configuration and credential payloads. This tool requires neither server/API access nor credential data and binds a reviewable plan to the exact input documents. No claim that the other tools lack all equivalent safeguards.",
+  "outcome": "The invented example maps one typed credential reference and one literal child-workflow ID. Applying the exact reviewed plan writes a new inactive workflow export and leaves other node parameters/connections intact.",
+  "acceptance": [
+    "Exact type/name or explicit typed mappings produce deterministic target references.",
+    "Ambiguous names, wrong types and dynamic child IDs stay unresolved and block application.",
+    "Changing an input or tampering with plan operations rejects application.",
+    "Credential payload fields and duplicate node IDs reject."
+  ],
+  "fields": "Input is one object with `workflow` (one n8n export) and `catalog`. Catalog credentials contain only id/name/type metadata; workflows maps source IDs to target IDs. Optional explicit_credentials keys have TYPE:SOURCE_ID form. Export credential references support assigned string id/name only. Null IDs and AI Gateway managed slots reject.",
+  "limits": "4 MiB JSON, up to2000 nodes and5000 credential metadata records. Literal executeWorkflow workflowId references only; expressions remain unresolved. Does not resolve arbitrary node parameters, URLs, environment variables, custom/community-node references, access rights or encryption. No n8n server execution/import, credential decryption, copying, activation or API calls. Relocated output is always active:false and cannot overwrite an existing file. Exports and reports can contain sensitive names/parameters; keep real files private.",
+  "distinction": "Existing generic JSON diff tools and agent-sbom do not perform typed n8n reference relocation with stale-plan rejection. This is one complete file-transformation workflow, not a general migration platform.",
+  "maintenance": "No runtime dependencies. Recheck export shape and newly managed credential slots against pinned upstream types before broadening support. n8n is fair-code/Sustainable Use licensed with enterprise exclusions, not a permissively licensed dependency. No n8n source, branding or code is bundled; the original interoperable tool is MIT.",
+  "discovery": "An offline relocation example, ambiguous-name failure case and accurate n8n export/import topics and portfolio index entry.",
+  "rank": 5,
+  "identity": "n8n-relocation-plan",
+  "date": "2026-10-25",
+  "state": "VALIDATED",
+  "demand_status": "Inferred demand for this specific project; linked upstream evidence is qualified below.",
+  "no_performance_claim": true,
+  "no_upstream_affiliation": true
+}

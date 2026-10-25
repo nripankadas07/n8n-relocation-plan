@@ -1,0 +1,39 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Workflow relocation review</title><style>body{font:16px/1.6 system-ui;background:#f3f6fa;color:#182438;max-width:1100px;margin:40px auto;padding:0 24px}header{border-bottom:3px solid #137a68;padding-bottom:24px}h1{font-size:2.25rem;line-height:1.15;max-width:800px}h2{margin-top:40px;font-size:1.2rem}.cards{display:flex;gap:12px;flex-wrap:wrap;margin:24px 0}.card{background:white;padding:16px 22px;border:1px solid #d2dae5;border-radius:10px;min-width:140px}.card b{display:block;font-size:1.7rem;color:#0b6555}table{border-collapse:collapse;width:100%;background:white;margin-bottom:22px;display:block;overflow:auto}th,td{text-align:left;padding:12px;border-bottom:1px solid #d6deea;vertical-align:top}th{background:#e3eaf2}td{overflow-wrap:anywhere}input{font:inherit;padding:10px;width:min(90%,600px);border:1px solid #8593a6;border-radius:6px}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:white;padding:20px;border:1px solid #d2dae5}.status{font-weight:700;color:#0b6555}footer{margin-top:40px;color:#4a5b73}details{margin-top:30px}label{display:block}</style><header><p>LOCAL DIAGNOSTICS · SYNTHETIC EXAMPLE WHEN USING THE BUNDLED FIXTURE</p><h1>Workflow relocation review</h1><p>Local export reference mappings only. No server access, credential payloads or workflow activation.</p><p class="status">Ready for review and local application</p></header><div class="cards"><div class="card">Planned mappings<b>2</b></div><div class="card">Unresolved references<b>0</b></div></div><label>Filter evidence rows <input id="q" type="search" placeholder="Service, key, group, path or finding"></label><h2>Reference changes</h2><table><thead><tr><th>Node</th><th>Reference</th><th>Before</th><th>After</th></tr></thead><tbody><tr><td>read-stock</td><td>credential</td><td>{&quot;id&quot;: &quot;source-17&quot;, &quot;name&quot;: &quot;Warehouse&quot;}</td><td>{&quot;id&quot;: &quot;target-23&quot;, &quot;name&quot;: &quot;Warehouse&quot;}</td></tr><tr><td>notify</td><td>workflow</td><td>{&quot;__rl&quot;: true, &quot;value&quot;: &quot;source-child&quot;, &quot;mode&quot;: &quot;id&quot;}</td><td>{&quot;__rl&quot;: true, &quot;value&quot;: &quot;target-child&quot;, &quot;mode&quot;: &quot;id&quot;}</td></tr></tbody></table><h2>Unresolved references</h2><table><thead><tr><th>Node</th><th>Kind</th><th>Reason</th></tr></thead><tbody></tbody></table><details><summary>Complete JSON evidence</summary><pre>{
+  &quot;schema&quot;: &quot;n8n-relocation/v1&quot;,
+  &quot;source_sha256&quot;: &quot;572a53b78dcc361520ebc697bf8353956c77fb27ab2da1d1e17e0498248dae0e&quot;,
+  &quot;catalog_sha256&quot;: &quot;8ed48f5b52b9aee6b6a7ca97f977ac54bee3c8d9672284dff01a01373b472064&quot;,
+  &quot;operations&quot;: [
+    {
+      &quot;node_index&quot;: 0,
+      &quot;node_id&quot;: &quot;read-stock&quot;,
+      &quot;kind&quot;: &quot;credential&quot;,
+      &quot;type&quot;: &quot;httpHeaderAuth&quot;,
+      &quot;before&quot;: {
+        &quot;id&quot;: &quot;source-17&quot;,
+        &quot;name&quot;: &quot;Warehouse&quot;
+      },
+      &quot;after&quot;: {
+        &quot;id&quot;: &quot;target-23&quot;,
+        &quot;name&quot;: &quot;Warehouse&quot;
+      }
+    },
+    {
+      &quot;node_index&quot;: 1,
+      &quot;node_id&quot;: &quot;notify&quot;,
+      &quot;kind&quot;: &quot;workflow&quot;,
+      &quot;before&quot;: {
+        &quot;__rl&quot;: true,
+        &quot;value&quot;: &quot;source-child&quot;,
+        &quot;mode&quot;: &quot;id&quot;
+      },
+      &quot;after&quot;: {
+        &quot;__rl&quot;: true,
+        &quot;value&quot;: &quot;target-child&quot;,
+        &quot;mode&quot;: &quot;id&quot;
+      }
+    }
+  ],
+  &quot;unresolved&quot;: [],
+  &quot;ready&quot;: true,
+  &quot;limits&quot;: &quot;Reference mapping only; no credential access, activation or server import is performed.&quot;
+}</pre></details><footer>Read the repository limitations before acting. These results describe supplied inputs; they do not certify a live system.</footer><script>document.querySelector("#q").addEventListener("input",e=>{const q=e.target.value.toLowerCase();document.querySelectorAll("tbody tr").forEach(r=>r.hidden=!r.textContent.toLowerCase().includes(q))});</script></html>

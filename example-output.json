@@ -1,0 +1,39 @@
+{
+  "catalog_sha256": "8ed48f5b52b9aee6b6a7ca97f977ac54bee3c8d9672284dff01a01373b472064",
+  "limits": "Reference mapping only; no credential access, activation or server import is performed.",
+  "operations": [
+    {
+      "after": {
+        "id": "target-23",
+        "name": "Warehouse"
+      },
+      "before": {
+        "id": "source-17",
+        "name": "Warehouse"
+      },
+      "kind": "credential",
+      "node_id": "read-stock",
+      "node_index": 0,
+      "type": "httpHeaderAuth"
+    },
+    {
+      "after": {
+        "__rl": true,
+        "mode": "id",
+        "value": "target-child"
+      },
+      "before": {
+        "__rl": true,
+        "mode": "id",
+        "value": "source-child"
+      },
+      "kind": "workflow",
+      "node_id": "notify",
+      "node_index": 1
+    }
+  ],
+  "ready": true,
+  "schema": "n8n-relocation/v1",
+  "source_sha256": "572a53b78dcc361520ebc697bf8353956c77fb27ab2da1d1e17e0498248dae0e",
+  "unresolved": []
+}

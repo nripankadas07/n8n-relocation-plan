@@ -1,0 +1,69 @@
+{
+  "workflow": {
+    "name": "Invented warehouse flow",
+    "active": true,
+    "nodes": [
+      {
+        "id": "read-stock",
+        "name": "Read stock",
+        "type": "n8n-nodes-base.httpRequest",
+        "parameters": {
+          "url": "https://example.invalid/stock"
+        },
+        "credentials": {
+          "httpHeaderAuth": {
+            "id": "source-17",
+            "name": "Warehouse"
+          }
+        },
+        "typeVersion": 1,
+        "position": [
+          0,
+          0
+        ]
+      },
+      {
+        "id": "notify",
+        "name": "Notify",
+        "type": "n8n-nodes-base.executeWorkflow",
+        "parameters": {
+          "workflowId": {
+            "__rl": true,
+            "value": "source-child",
+            "mode": "id"
+          }
+        },
+        "typeVersion": 1,
+        "position": [
+          200,
+          0
+        ]
+      }
+    ],
+    "connections": {
+      "Read stock": {
+        "main": [
+          [
+            {
+              "node": "Notify",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  },
+  "catalog": {
+    "credentials": [
+      {
+        "id": "target-23",
+        "name": "Warehouse",
+        "type": "httpHeaderAuth"
+      }
+    ],
+    "workflows": {
+      "source-child": "target-child"
+    }
+  }
+}
